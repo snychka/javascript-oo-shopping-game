@@ -1,11 +1,31 @@
 // Define the three constants here
+const name = 'unknown';
+const score = 0;
+const items = 0
 
+
+/*
+The getCurrentScore() method should simply return the score property. The addPoints() method should accept points as a parameter, and add it to the current score. The deductPoints() method should accept points as a parameter, and subtract it from the current score . Use the method declaration shorthand (that is, without using the function keyword) to declare these three methods.
+*/
+let player = {name , score, items,
+
+    getCurrentScore()  {return this.score;},
+    addPoints(points)  {this.score += points;},
+    deductPoints(points)  { this.score -= points}
+
+};
 
 // Define the player object here
 
 
 // Define the Product class - write the Constructor function for Product class here
 
+function Product (name, price, expiryDate, id) {
+        this.name = name;
+        this.price = price;
+        this.expiryDate = expiryDate;
+        this.id = id;
+}
 
 // Here, use Object.defineProperty to create property - daysToExpire
 
@@ -190,5 +210,10 @@ exports.exitLost = exitLost;
 exports.exitWon = exitWon;
 exports.main = main;
 
+exports.name = name;
+exports.items = items;
+exports.score = score;
+exports.player = player;
 
+exports.Product = Product;
 
