@@ -1,35 +1,36 @@
-//Define the player object here
+// Define the three constants here
 
 
-
-//Define the Product class - write the Constructor function for Product class here
-
-
-//Here, use Object.defineProperty to create property - daysToExpire
+// Define the player object here
 
 
+// Define the Product class - write the Constructor function for Product class here
 
-//Complete the dateDiff function
+
+// Here, use Object.defineProperty to create property - daysToExpire
+
+
+// Complete the dateDiff function
 const dateDiff = (date1, date2) => {
 };
 
-//Add method getDetails to Product using its prototype
+// Add method getDetails to Product using its prototype
 
 
-//Define the MagicProduct class here
+// Define the MagicProduct class here
 
 
-//Create the link between Product & MagicProduct classes here 
+// Create the link between Product & MagicProduct classes here 
 
 
-//Add method getDetails to Product class
+// Add method getDetails to Product class
 
 
-//Define Rating class here
+// Define Rating class here
 
 
 
-//to be completed
+// Complete this function
 function loadMasterData() {
     let productsList = new Array();
     let prodId = 1;
@@ -88,7 +89,7 @@ const  claculateBill = (prod, tBill) => {};
 
 const claculatePoints = (prod, tBill) => {};
 
-//to be completed
+// Complete this function
 function init(data) {
     console.log("Welcome to the Shopping Master game! You can shop for groceries and become a Shopping Master!");
     console.log("We offer you grocery items that you can buy or reject. You can buy up to 10 items.");
@@ -115,7 +116,7 @@ function start(data) {
     });
 }
 
-//to be completed
+// Complete this function
 const shop = (prodList, lastProd) => {
     let totalBill = 0;
     let product = null;
@@ -125,25 +126,25 @@ const shop = (prodList, lastProd) => {
     });
 };
 
-//to be completed
+// Complete this function
 const rateAndExit = () => {
     rl.question("How would you rate this game on a scale of 1-10 (1 being the lowest)?:", function (r) {
        
     });
 };
 
-//to be completed
+// Complete this function
 const exitLost = () => {
     console.log(`Your chances are over! You are short of ${500} to become a Shopping Master. Good Luck for next time!`.yellow);
 };
 
-//to be completed
+// Complete this function
 const exitWon = () => {
     console.log(`Congratulations!!! You became ${0}!`.blue);
 };
 
 function main() {
-    process.exit(0); // to be replaced by correct function calls
+    process.exit(0); // Replace this with correct function calls
 }
 
 
@@ -172,7 +173,8 @@ function doAction(o, d) {
     }
 }
 
-//main(); // Uncomment this line of code
+//main(); // Uncomment this line of code once all functionality is complete
+
 
 exports.loadMasterData = loadMasterData;
 exports.getProduct = getProduct;
