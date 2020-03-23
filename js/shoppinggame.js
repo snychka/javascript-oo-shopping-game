@@ -4,14 +4,6 @@ const score = 0;
 const items = 0
 
 /*
-let player = {
-  name: "unknown",
-  score: 0,
-  items: 0
-}
-*/
-
-/*
 The getCurrentScore() method should simply return the score property. The addPoints() method should accept points as a parameter, and add it to the current score. The deductPoints() method should accept points as a parameter, and subtract it from the current score . Use the method declaration shorthand (that is, without using the function keyword) to declare these three methods.
 */
 let player = {name , score, items,
@@ -35,14 +27,24 @@ function Product (name, price, expiryDate, id) {
 }
 
 // Complete the dateDiff function
-const dateDiff = (date1, date2) => {};
+// https://stackoverflow.com/questions/2627473/how-to-calculate-the-number-of-days-between-two-dates
+const dateDiff = (date1, date2) => {
+  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+  const diffDays = Math.round(Math.abs((date2 - date1) / oneDay));
+  return diffDays;
+};
 
 
 // Here, use Object.defineProperty to create property - daysToExpire
+Object.defineProperty(Product.prototype, 'daysToExpire', {
+  get: function () { return dateDiff(this.expiryDate, new Date()); }
+});
 
 
 // Add method getDetails to Product here
-
+Product.prototype.getDetails = function() {
+  return `Product Name: ${this.name} Product Price: ${this.price}`;
+}
 
 // Define the MagicProduct class here
 
@@ -224,6 +226,7 @@ exports.name = name;
 exports.items = items;
 exports.score = score;
 exports.player = player;
+exports.dateDiff = dateDiff;
 
 exports.Product = Product;
 
