@@ -43,17 +43,43 @@ Object.defineProperty(Product.prototype, 'daysToExpire', {
 
 // Add method getDetails to Product here
 Product.prototype.getDetails = function() {
-  return `Product Name: ${this.name} Product Price: ${this.price}`;
+  return `Product Name: ${this.name} , Product Price: ${this.price}`;
 }
 
+/*
+ * nother object type named `MagicProduct` should be added which would be a child of `Product`. This new object type should have two more properties, `points` and `isBonus` in addition to the properties of `Product`. To do this, define a constructor function named `MagicProduct`. The function should have parameters `id`, `name`, `price`, `expiryDate`, `points`, and `isBonus` passed to it in the given order. In the body of the function, invoke the constructor function of `Product` using the `call()` method available in `Object` class. Pass `this` as the 1st argument and `id`,  `name`,  `price`,  and `expiryDate` as the subsequent arguments in the given order, to the `call()` method. This should be the 1st statement inside the constructor function body. Below this statement, you need to initialize the `points` and `isBonus` properties.
+
+
+
+Ensure that `MagicProduct` is added to the list of `exports` at the end of the `shoppinggame.js` file.
+*/
 // Define the MagicProduct class here
+function MagicProduct(id, name, price, expiryDate, points, isBonus) {
+  Product.call(this, id, name, price, expiryDate);
+  this.points = points;
+  this.isBonus = isBonus;
+}
 
 
 // Create the link between Product & MagicProduct classes here 
+MagicProduct.prototype = Object.create(Product.prototype);
 
 
 // Define Rating class here
+class Rating {
 
+  constructor() {
+    this.rate = '';
+  }
+
+  set rating(value) {
+      if (value > 1 && value <= 4 ) {this.rate = "OK"; }
+      else if (value >= 5 && value <= 7)  {this.rate = "GOOD"; }
+      else if (value > 7) {this.rate = "EXCEPTIONAL"; }
+      else {this.rate = "BAD"; }
+  }
+
+}
 
 
 // Complete this function
@@ -229,4 +255,6 @@ exports.player = player;
 exports.dateDiff = dateDiff;
 
 exports.Product = Product;
+exports.MagicProduct = MagicProduct;
+exports.Rating = Rating;
 
