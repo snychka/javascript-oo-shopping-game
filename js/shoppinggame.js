@@ -3,11 +3,13 @@ const name = 'unknown';
 const score = 0;
 const items = 0
 
+/*
 let player = {
   name: "unknown",
   score: 0,
   items: 0
 }
+*/
 
 /*
 The getCurrentScore() method should simply return the score property. The addPoints() method should accept points as a parameter, and add it to the current score. The deductPoints() method should accept points as a parameter, and subtract it from the current score . Use the method declaration shorthand (that is, without using the function keyword) to declare these three methods.
