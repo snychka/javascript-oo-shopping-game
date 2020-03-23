@@ -1,4 +1,7 @@
-//Define the player object here
+// Define the three constants here
+const name = 'unknown';
+const score = 0;
+const items = 0
 
 let player = {
   name: "unknown",
@@ -6,35 +9,50 @@ let player = {
   items: 0
 }
 
+/*
+The getCurrentScore() method should simply return the score property. The addPoints() method should accept points as a parameter, and add it to the current score. The deductPoints() method should accept points as a parameter, and subtract it from the current score . Use the method declaration shorthand (that is, without using the function keyword) to declare these three methods.
+*/
+let player = {name , score, items,
 
-//Define the Product class - write the Constructor function for Product class here
+    getCurrentScore()  {return this.score;},
+    addPoints(points)  {this.score += points;},
+    deductPoints(points)  { this.score -= points}
 
-
-//Here, use Object.defineProperty to create property - daysToExpire
-
-
-
-//Complete the dateDiff function
-const dateDiff = (date1, date2) => {
 };
 
-//Add method getDetails to Product using its prototype
+// Define the player object here
 
 
-//Define the MagicProduct class here
+// Define the Product class - write the Constructor function for Product class here
+
+function Product (name, price, expiryDate, id) {
+        this.name = name;
+        this.price = price;
+        this.expiryDate = expiryDate;
+        this.id = id;
+}
+
+// Complete the dateDiff function
+const dateDiff = (date1, date2) => {};
 
 
-//Create the link between Product & MagicProduct classes here 
+// Here, use Object.defineProperty to create property - daysToExpire
 
 
-//Add method getDetails to Product class
+// Add method getDetails to Product here
 
 
-//Define Rating class here
+// Define the MagicProduct class here
+
+
+// Create the link between Product & MagicProduct classes here 
+
+
+// Define Rating class here
 
 
 
-//to be completed
+// Complete this function
 function loadMasterData() {
     let productsList = new Array();
     let prodId = 1;
@@ -62,8 +80,13 @@ function loadMasterData() {
     productData.set("sugar", { pr: 100, dt: oneYearLater });
 
 
+    // Call Object.keys() to load the property names of the Product object in to an array named prodKeys here
 
+    // Complete the loadProducts function
     const loadProducts = (value, key, map) => {};
+
+    
+    productData.forEach(loadProducts);
 
 
     //##############Load MagicProducts###############################
@@ -75,6 +98,7 @@ function loadMasterData() {
     magicProductData.set("cocktails", { pr: 2000, dt: oneYearLater, pt: 40, isB: true });
 
 
+    // Complete the loadMagicProducts function
     const loadMagicProducts = (value, key, map) => {};
 
 
@@ -93,7 +117,7 @@ const  claculateBill = (prod, tBill) => {};
 
 const claculatePoints = (prod, tBill) => {};
 
-//to be completed
+// Complete this function
 function init(data) {
     console.log("Welcome to the Shopping Master game! You can shop for groceries and become a Shopping Master!");
     console.log("We offer you grocery items that you can buy or reject. You can buy up to 10 items.");
@@ -120,7 +144,7 @@ function start(data) {
     });
 }
 
-//to be completed
+// Complete this function
 const shop = (prodList, lastProd) => {
     let totalBill = 0;
     let product = null;
@@ -130,25 +154,25 @@ const shop = (prodList, lastProd) => {
     });
 };
 
-//to be completed
+// Complete this function
 const rateAndExit = () => {
     rl.question("How would you rate this game on a scale of 1-10 (1 being the lowest)?:", function (r) {
        
     });
 };
 
-//to be completed
+// Complete this function
 const exitLost = () => {
     console.log(`Your chances are over! You are short of ${500} to become a Shopping Master. Good Luck for next time!`.yellow);
 };
 
-//to be completed
+// Complete this function
 const exitWon = () => {
     console.log(`Congratulations!!! You became ${0}!`.blue);
 };
 
 function main() {
-    process.exit(0); // to be replaced by correct function calls
+    process.exit(0); // Replace this with correct function calls
 }
 
 
@@ -177,8 +201,9 @@ function doAction(o, d) {
     }
 }
 
-//main(); // Uncomment this line of code
+//main(); // Uncomment this line of code once all functionality is complete
 
+exports.dateDiff = dateDiff;
 exports.loadMasterData = loadMasterData;
 exports.getProduct = getProduct;
 exports.findProductById = findProductById;
@@ -193,5 +218,10 @@ exports.exitLost = exitLost;
 exports.exitWon = exitWon;
 exports.main = main;
 
+exports.name = name;
+exports.items = items;
+exports.score = score;
+exports.player = player;
 
+exports.Product = Product;
 
