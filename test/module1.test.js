@@ -87,7 +87,7 @@ const today = new Date();
 const oneYearLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDay());
 
 
-describe('Shopping Master game', function () {
+describe('Shopping Master game - Define object-types/classes', function () {
 
     describe("Define the player object", () => {
         it('Should define the player object. @player-object', function () {
@@ -135,27 +135,35 @@ describe('Shopping Master game', function () {
                 }
 
                 if (methods[i].key.name == 'addPoints' &&
-                    methods[i].value.body.body[0].expression &&
-                    methods[i].value.body.body[0].expression.left.object &&
-                    methods[i].value.body.body[0].expression.left.object.type == 'ThisExpression' &&
-                    methods[i].value.body.body[0].expression.right.left.object &&
-                    methods[i].value.body.body[0].expression.right.left.object.type == 'ThisExpression') {
-                    thisUsedInaddPoints = true;
+                    methods[i].value.body.body[0].expression) {
+
+                    if (methods[i].value.body.body[0].expression.operator == '=') {
+                        thisUsedInaddPoints = (methods[i].value.body.body[0].expression.left.object &&
+                            methods[i].value.body.body[0].expression.left.object.type == 'ThisExpression' &&
+                            methods[i].value.body.body[0].expression.right.left.object &&
+                            methods[i].value.body.body[0].expression.right.left.object.type == 'ThisExpression') ? true : false;
+                    } else if (methods[i].value.body.body[0].expression.operator == '+=') {
+                        thisUsedInaddPoints = (methods[i].value.body.body[0].expression.left.object &&
+                            methods[i].value.body.body[0].expression.left.object.type == 'ThisExpression') ? true : false;
+                    }
                 }
 
                 if (methods[i].key.name == 'deductPoints' &&
-                    methods[i].value.body.body[0].expression &&
-                    methods[i].value.body.body[0].expression.left.object &&
-                    methods[i].value.body.body[0].expression.left.object.type == 'ThisExpression' &&
-                    methods[i].value.body.body[0].expression.right.left.object &&
-                    methods[i].value.body.body[0].expression.right.left.object.type == 'ThisExpression') {
-                    thisUsedIndeductPoints = true;
+                    methods[i].value.body.body[0].expression) {
+
+                    if (methods[i].value.body.body[0].expression.operator == '=') {
+                        thisUsedIndeductPoints = (methods[i].value.body.body[0].expression.left.object &&
+                            methods[i].value.body.body[0].expression.left.object.type == 'ThisExpression' &&
+                            methods[i].value.body.body[0].expression.right.left.object &&
+                            methods[i].value.body.body[0].expression.right.left.object.type == 'ThisExpression') ? true : false;
+                    } else if (methods[i].value.body.body[0].expression.operator == '-=') {
+                        thisUsedIndeductPoints = (methods[i].value.body.body[0].expression.left.object &&
+                            methods[i].value.body.body[0].expression.left.object.type == 'ThisExpression') ? true : false;
+                    }
+
                 }
 
             }
-
-
-            console.log(thisUsedIngetCurrentScore+ " " + thisUsedInaddPoints+ " " +thisUsedIndeductPoints);
 
             test.assert(thisUsedIngetCurrentScore &&
                 thisUsedInaddPoints &&
