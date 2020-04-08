@@ -265,26 +265,25 @@ const calculatePoints = (prod, tBill) => {
 
 // Complete this function
 function init(data) {
-    console.log("Welcome to the Shopping Master game! You can shop for groceries and become a Shopping Master!");
-    console.log("We offer you grocery items that you can buy or reject. You can buy up to 10 items.");
-    console.log("As you go along your shopping journey you will collect points.");
-    console.log("If you earn 500 points you become a Shopping Master!");
-	console.log("You can start the game or quit using the following options.");
-    console.log("1 - Shop".green);
-    console.log("2 - Quit".green);
-    console.log("=============================================================================================\n");
+    if (Object.is(data, undefined) == false && gameComplete == true) {
+        console.log("Welcome to the Shopping Master game! You can shop for groceries and become a Shopping Master!");
+        console.log("We offer you grocery items that you can buy or reject. You can buy up to 10 items.");
+        console.log("As you go along your shopping journey you will collect points.");
+        console.log("If you earn 500 points you become a Shopping Master!");
+        console.log("You can start the game or quit using the following options.");
+        console.log("1 - Shop".green);
+        console.log("2 - Quit".green);
+        console.log("=============================================================================================\n");
 
-    if(Object.is(data,undefined) || gameComplete == false) {
-        console.log("Game under construction ...");
-    } else {
         rl.question("What's your name? ", function (name) {
-            // Assign the player's name to the user entered name here
-
+            // Assign the player object's name property to the user entered name here
             console.log(`Welcome ${player.name} !!!`.blue);
             start(data);
         });
+
     }
 }
+
 
 function start(data) {
     rl.question("What would you like to do? <Enter option number>: ", function (option) {
@@ -300,6 +299,7 @@ function start(data) {
 // Complete this function
 const shop = (prodList, tBill, lastProd) => {
     let totalBill = tBill;
+    const prId = generateProductId();
     let product = null; // Assign the value of `product` here
     let productDetails = null; // Assign the value of `productDetails` here
  
@@ -311,7 +311,7 @@ const shop = (prodList, tBill, lastProd) => {
             calculatePoints(product, totalBill);
             console.log(`${player.name} you earned ${player.getCurrentScore()} points!`.bold);
             if (player.score > 500) {
-                //Object.defineProperty(player, "status", { value: "Shopping Master" }); This code to be added by the learner
+                // Define and set new property status in the player object here
                 exitWon();
             } else {
                 let iCount = ++player.items;
