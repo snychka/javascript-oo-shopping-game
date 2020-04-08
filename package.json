@@ -17,7 +17,10 @@
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha './test/*.test.js' || true",
-    "test:module1": "cross-env NODE_ENV=test mocha './test/module1.test.js' || true"
+    "test:module1": "cross-env NODE_ENV=test mocha './test/module1.test.js' || true",
+    "test:module2": "cross-env NODE_ENV=test mocha './test/module2.test.js' || true",
+    "test:module3": "cross-env NODE_ENV=test mocha './test/module3.test.js' || true",
+    "test:module4": "cross-env NODE_ENV=test mocha './test/module4.test.js' || true"
   },
   "repository": {
     "type": "git",
