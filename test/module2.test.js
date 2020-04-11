@@ -1,8 +1,6 @@
 var test = require('unit.js');
-const shoppinggame = require('../js/shoppinggame');
 var esprima = require('esprima')
 const fs = require('fs');
-
 const source = fs.readFileSync('js/shoppinggame.js', 'utf8');
 
 let prodKeysNode;
@@ -10,28 +8,30 @@ let prodObjNode;
 let magProdKeysNode;
 let magProdObjNode;
 
-esprima.parseModule(source, {}, function (node) {
-    if (node.type == 'VariableDeclarator' &&
-        node.id.name == 'prodKeys') {
-        prodKeysNode = node;
-    }
 
-    if (node.type == 'VariableDeclarator' &&
-        node.id.name == 'prodObj') {
-        prodObjNode = node;
-    }
+    esprima.parseModule(source, {}, function (node) {
+        if (node.type == 'VariableDeclarator' &&
+            node.id.name == 'prodKeys') {
+            prodKeysNode = node;
+        }
 
-    if (node.type == 'VariableDeclarator' &&
-        node.id.name == 'magProdKeys') {
-        magProdKeysNode = node;
-    }
+        if (node.type == 'VariableDeclarator' &&
+            node.id.name == 'prodObj') {
+            prodObjNode = node;
+        }
 
-    if (node.type == 'VariableDeclarator' &&
-        node.id.name == 'magProdObj') {
-        magProdObjNode = node;
-    }
+        if (node.type == 'VariableDeclarator' &&
+            node.id.name == 'magProdKeys') {
+            magProdKeysNode = node;
+        }
 
-});
+        if (node.type == 'VariableDeclarator' &&
+            node.id.name == 'magProdObj') {
+            magProdObjNode = node;
+        }
+
+    });
+
 
 describe('Shopping Master game - Load master data', function () {
 
@@ -53,13 +53,15 @@ describe('Shopping Master game - Load master data', function () {
                 prodKeysNode.init.arguments.length > 0 &&
                 prodKeysNode.init.arguments[0].type == 'Identifier') ? prodKeysNode.init.arguments[0].name : null;
 
-
             let objVariablePassed = false;
 
             esprima.parseModule(source, {}, function (node) {
                 if (node.type == 'VariableDeclarator' &&
+                    node.id &&
                     node.id.name == objidentifier &&
+                    node.init &&
                     node.init.type == 'NewExpression' &&
+                    node.init.callee &&
                     node.init.callee.name == 'Product') {
                     objVariablePassed = true;
                 }
@@ -69,11 +71,12 @@ describe('Shopping Master game - Load master data', function () {
             const proObjectPassed = (prodKeysNode.init.arguments &&
                 prodKeysNode.init.arguments.length > 0 &&
                 prodKeysNode.init.arguments[0].type == 'NewExpression' &&
+                prodKeysNode.init.arguments[0].callee &&
                 prodKeysNode.init.arguments[0].callee.name == 'Product')
                 ||
                 objVariablePassed ? true : false;
 
-            test.assert(objectKeyUsed && proObjectPassed, "Have you called Object.keys() method, passing a `Product` object as the argument?");
+            test.assert(objectKeyUsed && proObjectPassed, "Have you called Object.keys() method, passing a `new Product()` object as the argument?");
         });
     });
 
@@ -127,7 +130,7 @@ describe('Shopping Master game - Load master data', function () {
                 ||
                 objVariablePassed ? true : false;
 
-            test.assert(objectKeyUsed && magProObjectPassed, "Have you called Object.keys() method, passing a `MagicProduct` object as the argument?");
+            test.assert(objectKeyUsed && magProObjectPassed, "Have you called Object.keys() method, passing a `new MagicProduct()` object as the argument?");
         });
     });
 

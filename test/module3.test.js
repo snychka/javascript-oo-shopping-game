@@ -17,7 +17,9 @@ describe('Shopping Master game - Implement product identification logic', functi
 
             const x = shoppinggame.findProductById(1).call(this,pr);
 
-            test.assert(typeof x === "boolean","Have you returned the result of the equality comparison between the `id` property of the product and the passed in `id`, from the anonymous function?");
+            const idPropUsed = shoppinggame.findProductById.toString().includes('.id')
+
+            test.assert((idPropUsed && typeof x === "boolean"),"Have you returned the result of the equality comparison between the `id` property of the product and the passed in `id`, from the anonymous function?");
 
             
         });
