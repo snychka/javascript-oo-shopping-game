@@ -30,8 +30,11 @@ esprima.parseModule(source, {}, function (node) {
 });
 
 const today = new Date();
-const oneYearLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDay());
-const daysLater = new Date(today.getFullYear(), today.getMonth(), today.getDay() + 3);
+const oneYearLater = new Date();
+oneYearLater.setFullYear(oneYearLater.getFullYear() + 1);
+
+const daysLater = new Date();
+daysLater.setDate(daysLater.getDate() + 3);
 
 describe('Shopping Master game - Implement points calculation logic', function () {
     describe("Calculate the total bill", () => {
@@ -94,6 +97,12 @@ describe('Shopping Master game - Implement points calculation logic', function (
             
             const result1 = shoppinggame.findPointsForExpDate(pr1);
             const result2 = shoppinggame.findPointsForExpDate(pr2);
+
+            console.log(`Days to expire pr1 : ` + pr1.daysToExpire);
+            console.log(`Days to expire pr2 : ` + pr2.daysToExpire);
+
+            console.log(result1);
+            console.log(result2);
 
             test.assert(result2 == 10, "Have you checked and returned 10 if the product has less than 30 days to expire?");
             test.assert(result1 == 0, "Have you checked and returned 0 if the product has more than 30 days to expire (else block)?");
