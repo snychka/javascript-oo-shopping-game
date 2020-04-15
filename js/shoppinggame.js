@@ -325,11 +325,12 @@ const shop = (prodList, tBill, lastProd) => {
             console.log(`${player.name} you earned ${player.getCurrentScore()} points!`.bold);
             if (player.score > 500) {
                 // Define and set new property status in the player object here
-                Object.defineProperty(player, 'status', "Shopping Master");
+                Object.defineProperty(player, 'status', {value : "Shopping Master"});
                 exitWon();
             } else {
                 let iCount = ++player.items;
                 // Make the Object.defineProperty() call here to set the value of `items` using the value of `iCount`
+                Object.defineProperty(player, 'items', {value : iCount});
 
                 if (player.items < 10) {
                     shop(prodList, totalBill);
